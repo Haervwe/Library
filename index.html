@@ -9,6 +9,30 @@
     <title>My Library</title>
 </head>
 <body>
+    <form id="inputForm" action="" method="get">
+        <h3>New book</h3>
+        <div class="input">
+            <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="The Return of the King">
+        </div>
+        <div class="input">
+            <label for="Author">Author:</label>
+            <input type="text" id="Author" name="Author" placeholder="J.R.R Tolkien"> 
+        </div>
+        <div class="input">
+            <label for="pages">N° of pages</label>
+            <input type="text" pattern="[0-9]{1,5}" name="pages" id="pages" placeholder="800"> 
+        </div>
+        <div class="input">
+            <label for="readed">Have you read it?</label>
+            <input type="checkbox" name="readed" id="readed">
+        </div>
+        <div class="input">
+            <input type="button" id="addbook" type="submit" value="Add book">
+            <input type="button" id="cancel" type="reset" value="Cancel">
+        </div>
+        
+    </form>
     <div class="container">
         <div class="header">
             <h1>My Library</h1>
