@@ -34,15 +34,33 @@ Book.prototype.addBook = function() {
 }
 
 function showForm () {
-    inputForm.style.display = "grid";    
+    inputForm.style.display = "grid";
+    inputForm.title.value = "";
+    inputForm.author.value = "";
+    inputForm.pages.value = "";
+    inputForm.readed.value = false;   
 }
 
 function hideForm () {
     inputForm.style.display = "none";    
 }
 
+function newBook (e){
+    const form = e.target
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const newBook = new Book(form.title.value,form.author.value,form.pages.value,form.readed.value);
+    booksArray.push(newBook);
+    booksArray[booksArray.length -1].addBook();
+    inputForm.style.display = "none";
+
+}
+
+
 newBookBtn.addEventListener("click",showForm)
 cancel.addEventListener("click",hideForm)
+inputForm.addEventListener("submit",newBook);
+
 
 
 
