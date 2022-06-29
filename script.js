@@ -72,6 +72,13 @@ function newBook (e){
     const form = e.target
     e.preventDefault();
     e.stopImmediatePropagation();
+    for (let i = 0; i < booksArray.length; i++){
+        if (form.title.value == booksArray[i].title){
+            alert("The Book already Exist");
+            showForm();
+            return;
+        }
+    }
     const newBook = new Book(form.title.value,form.author.value,form.pages.value,form.readed.checked);
     booksArray.push(newBook);
     booksArray[booksArray.length -1].addBook();
@@ -81,7 +88,6 @@ function newBook (e){
 
 function deleteBook (e){
     const book = e.target.parentNode;
-    console.log(book.firstChild.innerText);
     for (let i = 0; i < booksArray.length; i++){
         if (book.firstChild.innerText == `Title: ${booksArray[i].title}`){
             booksArray.splice(i,1);
