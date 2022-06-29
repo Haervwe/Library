@@ -1,3 +1,6 @@
+
+// variables initialization
+
 const booksArray = [];
 const inputForm = document.getElementById("inputForm");
 const newBookBtn = document.getElementById("new")
@@ -5,12 +8,16 @@ const cancel = document.getElementById("cancel");
 const board = document.querySelector(".library");
 const del = document.querySelector(".del");
 
+// book object constructor
+
 function Book(title,author,pages,read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
+
+//method to add a book to the DOM, it also adds delete and read controls with the pertinent event listeners.
 
 Book.prototype.addBook = function() {
     const newBook = document.createElement("div");
@@ -47,6 +54,8 @@ Book.prototype.addBook = function() {
     board.appendChild(newBook);
 }
 
+//functions to control the visivility of the new book form
+
 function showForm () {
     inputForm.style.display = "grid";
     inputForm.title.value = "";
@@ -59,6 +68,8 @@ function hideForm () {
     inputForm.style.display = "none";    
 }
 
+//function to change the readed status on the array when is changed on the DOM.
+
 function markReaded(e){
     const book = e.currentTarget.parentNode.parentNode;
     for (let i = 0; i < booksArray.length; i++){
@@ -67,6 +78,8 @@ function markReaded(e){
         }
     }
 }
+
+// functions to add and delete books from the array.
 
 function newBook (e){
     const form = e.target
@@ -96,6 +109,7 @@ function deleteBook (e){
     board.removeChild(e.target.parentNode);
 }
 
+//fixed DOM eventlisteners
 
 newBookBtn.addEventListener("click",showForm)
 cancel.addEventListener("click",hideForm)
