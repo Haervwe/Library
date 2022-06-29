@@ -16,6 +16,7 @@ Book.prototype.addBook = function() {
     const newBook = document.createElement("div");
     newBook.className = `book n${booksArray.length -1}`;
     const tit  = document.createElement("p");
+    tit.className = "title";
     tit.innerText = `Title: ${this.title}`;
     const aut = document.createElement("p");
     aut.innerText =`Author: ${this.author}`;
@@ -30,7 +31,7 @@ Book.prototype.addBook = function() {
     const del = document.createElement("button");
     del.className = `del`;
     del.innerText = "Delete";
-    del.onclick = function () {deleteBook();};
+    del.addEventListener("click", deleteBook);
     newBook.appendChild(tit);
     newBook.appendChild(aut);
     newBook.appendChild(pag);
@@ -63,21 +64,15 @@ function newBook (e){
 }
 
 function deleteBook (e){
-    const book = e;
-    for (let i=0; i < booksArray.length; i++){
-        if (book.title.value == booksArray[i].title){
+    const book = e.target.parentNode;
+    for (let i = 0; i < booksArray.length; i++){
+        if (toString(book.title.value) == toString(`Title: ${booksArray[i].title}`)){
             booksArray.splice(i,1);
         }
     }
-    board.removeChild(e.parentNode);
+    board.removeChild(e.target.parentNode);
 }
 
 newBookBtn.addEventListener("click",showForm)
 cancel.addEventListener("click",hideForm)
 inputForm.addEventListener("submit",newBook);
-
-
-
-
-
-
