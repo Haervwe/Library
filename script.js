@@ -86,9 +86,10 @@ function markReaded(e){
     for (let i = 0; i < booksArray.length; i++){
         if (book.firstChild.innerText == `Title: ${booksArray[i].title}`){
             booksArray[i].read = !booksArray[i].read;
-            updateLocal();
+            
         }
     }
+    updateLocal();
 }
 
 // functions to add and delete books from the array.
