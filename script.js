@@ -1,14 +1,18 @@
 
-// variables initialization
-
-const booksArray = [];
+//variables initialization
+var booksArray = [];
+//checks for stored data
+if (localStorage.getItem("data") == null) {
+    localStorage.setItem("data",JSON.stringify([]));
+} 
+booksArray = JSON.parse(localStorage.getItem("data"));
 const inputForm = document.getElementById("inputForm");
 const newBookBtn = document.getElementById("new")
 const cancel = document.getElementById("cancel");
 const board = document.querySelector(".library");
 const del = document.querySelector(".del");
 
-// book object constructor
+//book object constructor
 
 function Book(title,author,pages,read){
     this.title = title;
@@ -54,6 +58,13 @@ Book.prototype.addBook = function() {
     board.appendChild(newBook);
 }
 
+//function tu opdate de local data file
+
+function updateLocal () {
+    localStorage.clear;
+    localStorage.setItem("data",JSON.stringify(booksArray));
+}
+
 //functions to control the visivility of the new book form
 
 function showForm () {
@@ -75,6 +86,7 @@ function markReaded(e){
     for (let i = 0; i < booksArray.length; i++){
         if (book.firstChild.innerText == `Title: ${booksArray[i].title}`){
             booksArray[i].read = !booksArray[i].read;
+            updateLocal();
         }
     }
 }
@@ -96,6 +108,7 @@ function newBook (e){
     booksArray.push(newBook);
     booksArray[booksArray.length -1].addBook();
     inputForm.style.display = "none";
+    updateLocal();
 
 }
 
@@ -107,10 +120,19 @@ function deleteBook (e){
         }
     }
     board.removeChild(e.target.parentNode);
+    updateLocal();
 }
+
+// loop to display saved books from local storage
+
+for (let i = 0; i < booksArray.length;i++){
+    booksArray[i].__proto__ = Book.prototype; 
+    booksArray[i].addBook();
+}
+
 
 //fixed DOM eventlisteners
 
-newBookBtn.addEventListener("click",showForm)
-cancel.addEventListener("click",hideForm)
+newBookBtn.addEventListener("click",showForm);
+cancel.addEventListener("click",hideForm);
 inputForm.addEventListener("submit",newBook);
