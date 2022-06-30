@@ -51,20 +51,33 @@ body {
   display: grid;
   overflow-y: auto;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-rows: minmax(200px, 1fr);
   gap: 10px;
   padding: 10px;
 }
 .container .board .library .book {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: rgb(88, 53, 1);
   border-radius: 15px;
   box-shadow: 2px 2px 15px black;
   color: aliceblue;
   align-items: center;
   justify-content: center;
+  padding: 15px;
+  flex: 1 1 auto;
+}
+.container .board .library .book p {
+  display: flex;
+  flex: 1 1 auto;
+  margin: 5px;
+  text-align: center;
+}
+.container .board .library .book button {
+  display: flex;
 }
 .container .footer {
   display: flex;
